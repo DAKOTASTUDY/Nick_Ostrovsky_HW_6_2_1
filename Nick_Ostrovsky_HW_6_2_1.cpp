@@ -22,7 +22,7 @@ private:
 
         void elementValue(int index, int value)
         {
-            if ((index > asize))
+            if ((index < 0) && (index >= asize))
 
             {
                 throw std::runtime_error("Error. Index is out of range.");
@@ -58,6 +58,7 @@ int main()
         std::cout << a.getElement(20) << std::endl;
     }
     catch (const std::exception& e) { std::cout << e.what(); };
+  
     return 0;
 }
 
