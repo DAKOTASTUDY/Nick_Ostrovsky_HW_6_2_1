@@ -25,7 +25,7 @@ private:
             if ((index > asize))
 
             {
-                throw 5 ;
+                throw std::runtime_error("Error. Index is out of range.");
             }
             array[index] = value;
         
@@ -35,7 +35,7 @@ private:
             if ((index < 0)  && (index >= asize))
 
             {
-                throw  "Out of range." ;
+                throw std::runtime_error("Error. Index is of range.");
             }
             return array[index];
         }
@@ -44,20 +44,20 @@ private:
 int main()
 {
     smartArray a(10);
-   /* for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)
     {
         a.elementValue(i, i);
     }
     for (int i = 0; i < 10; i++)
     {
        std::cout <<"Array element (index): " << "(" << i << ") " << a.getElement(i) << std::endl;
-    }*/
+    }
     try
     {
         a.elementValue(20, 20);
         std::cout << a.getElement(20) << std::endl;
     }
-    catch (int error) { std::cout << error << std::endl; };
+    catch (const std::exception& e) { std::cout << e.what(); };
     return 0;
 }
 
