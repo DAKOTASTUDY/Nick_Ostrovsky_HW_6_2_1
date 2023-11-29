@@ -6,12 +6,13 @@ class smartArray
 private:
     int asize;
     int* array;
+    int index;
     public:
 
         smartArray(int size) 
         {
             asize = size;
-            array = new int[asize];
+            array = new int[2*asize];
         
         };
         ~smartArray()
@@ -20,9 +21,11 @@ private:
         
         }
 
-        void elementValue(int index, int value)
+        void elementValue(int value)
         {
-            if ((index < 0) && (index >= asize))
+            int in = 0;
+            &index = in++;
+            if ((index < 0) && (index >= 2*asize))
 
             {
                 throw std::runtime_error("Error. Index is out of range.");
@@ -32,7 +35,7 @@ private:
         }
         int getElement(int index) 
         {
-            if ((index < 0)  && (index >= asize))
+            if ((index < 0)  && (index >= 2*asize))
 
             {
                 throw std::runtime_error("Error. Index is of range.");
@@ -44,9 +47,9 @@ private:
 int main()
 {
     smartArray a(10);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 21; i++)
     {
-        a.elementValue(i, i);
+        a.elementValue(i);
     }
     for (int i = 0; i < 10; i++)
     {
@@ -54,7 +57,7 @@ int main()
     }
     try
     {
-        a.elementValue(20, 20);
+        a.elementValue(20);
         std::cout << a.getElement(20) << std::endl;
     }
     catch (const std::exception& e) { std::cout << e.what(); };
